@@ -261,7 +261,7 @@ static T mult_div(T a, T b, T c) {
 } 
 
 template <typename T = int>
-std::vector<T> standard_multiplication(std::vector<T> first, std::vector<T> second, T base = (std::numeric_limits<T>::max() /4)*2) {
+std::vector<T> standard_multiplication(std::vector<T> first, std::vector<T> second, T base = std::numeric_limits<T>::max()) {
     // will keep the result number in vector in reverse order
     std::vector<T> temp;
     size_t new_size = first.size() + second.size();
@@ -325,7 +325,7 @@ template <typename T = int>
 std::vector<T> karatsuba_multiplication (
         std::vector<T> first,
         std::vector<T> second, 
-        const T base = (std::numeric_limits<T>::max() / 4) * 2
+        const T base = std::numeric_limits<T>::max()
 ) {
 
     // first --- a, second --- b
@@ -454,7 +454,7 @@ std::vector<T> karatsuba_multiplication (
 }
 
 template <typename T = int>
-std::vector<T> multiply_vector(std::vector<T> first, std::vector<T> second, T base = (std::numeric_limits<T>::max() / 4) * 2) {
+std::vector<T> multiply_vector(std::vector<T> first, std::vector<T> second, T base = std::numeric_limits<T>::max()) {
     return karatsuba_multiplication(first, second, base);
 }
 
@@ -464,7 +464,6 @@ int main()
     std::cout << "Multiplication -" << std::endl;
     std::vector<int> v1, v2, out;
 
-    //int max = (std::numeric_limits<int>::max() / 4) * 2;
     int max = std::numeric_limits<int>::max();
     v1.push_back(max - 1);
     v2.push_back(2);

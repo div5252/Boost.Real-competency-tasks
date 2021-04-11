@@ -1,3 +1,5 @@
+/* Task1: Find and implement an optimal representation to store and work on numbers involving a large number of digits. */
+
 #include <iostream>
 #include <vector>
 #include <algorithm>
@@ -7,6 +9,7 @@
 
 int KARATSUBA_BASE_CASE_THRESHOLD = 100;
 
+// First element of vector is MSB, whereas last element of vector is LSB.
 template <typename T = int>
 std::vector<T> normalize(std::vector<T> digits) {
     reverse(digits.begin(), digits.end());
@@ -82,8 +85,8 @@ bool is_not_equal(std::vector<T> first, std::vector<T> second) {
 template <typename T = int>
 std::vector<T> add_vector(std::vector<T> &first, std::vector<T> &second, T base = std::numeric_limits<T>::max()){
     std::vector<T> temp;
-    int length = std::max((int)first.size(), (int)second.size());
-    int carry = 0;
+    size_t length = std::max((int)first.size(), (int)second.size());
+    T carry = 0;
 
     // we walk the numbers from the lowest to the highest digit
     for (int i = 0; i < length; i++) {
@@ -99,7 +102,7 @@ std::vector<T> add_vector(std::vector<T> &first, std::vector<T> &second, T base 
         }
         
         T digit;
-        int orig_carry = carry;
+        T orig_carry = carry;
         carry = 0;
         if ((base - lhs_digit) < rhs_digit) {
             T min = std::min(lhs_digit, rhs_digit);
@@ -492,6 +495,18 @@ int main()
     v2.clear();
     out.clear();
 
+    // Vectors of long long int type
+    std::vector<long long int> v3, v4, out1;
+    long long int max1 = std::numeric_limits<long long int>::max();
+    v3.push_back(max1 - 1);
+    v4.push_back(max1 - 1);
+    out1 = multiply_vector(v3, v4, max1);
+    assert(out1.size() == 2);
+    std::cout << out1[0] << " " << out1[1] << std::endl;  // out contains digits : max - 2, 1
+    v3.clear();
+    v4.clear();
+    out1.clear();
+
     for(int i = 0; i < 10; ++i)
     {
         v1.push_back(max - 1);
@@ -586,6 +601,22 @@ int main()
     v1.clear();
     v2.clear();
     out.clear();
+
+    // Vectors of long long int type
+    for(int i = 0; i < 10; ++i)
+    {
+        v3.push_back(max1 - 1);
+        if(i != 0) v4.push_back(max1 - 1);
+    }
+    out1 = multiply_vector(v3, v4, max1);
+    for(int i = 0; i < (int)out1.size(); ++i)
+    {
+        std::cout << out1[i] << " ";
+    }
+    std::cout << std::endl;
+    v3.clear();
+    v4.clear();
+    out1.clear();
 
     for(int i = 0; i < 10; ++i)
     {

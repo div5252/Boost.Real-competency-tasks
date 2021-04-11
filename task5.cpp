@@ -1,3 +1,6 @@
+/* Task5: Define a user-defined literal assignable to float that fails compilation, when the value provided, cannot be expressed as
+a positive integer power of 0.5 (e.g. 0.5, 0.25, 0.125). */
+
 #include <cassert>
 
 constexpr bool is_power_of_half(long double x)
@@ -16,6 +19,7 @@ constexpr long double operator "" _f(long double x)
     assert(is_power_of_half(x));
     return x;
 }
+
 int main()
 {
     // Use -std=c++17 for testing

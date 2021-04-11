@@ -1,3 +1,8 @@
+/* Task4: Provide a function receiving an integer (X) and a tuple (std::tuple<type1, type2, type3…>) into a tuple of vectors 
+(std::tuple<std::vector,std::vector, std::vector, …> where each vector has X elements of each originally received in each tuple_element.
+E.g. for X=2 and the tuple {1, 1.0, ‘a'} , the result type is std::tuple<std::vector, std::vector, std::vector>
+and the values are: {{1, 1},{1.0, 1.0},{‘a', ‘a'}}. */
+
 #include <utility>
 #include <tuple>
 #include <vector>
